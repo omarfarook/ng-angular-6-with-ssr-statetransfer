@@ -1,5 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
@@ -8,7 +9,9 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule.withServerTransition({appId: 'ng-angular-ssr-6'}),
+    HttpClientModule,
+    BrowserTransferStateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
