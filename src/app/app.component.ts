@@ -1,30 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { TransferState, makeStateKey } from '@angular/platform-browser';
-const DOGS_KEY = makeStateKey('dogs');
+import { CommonUtilityService } from './services/common-utility-service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit  {
-  title = 'ng-angular6';
-  dogs: any;
-  constructor( private http: HttpClient,
-               private state: TransferState) { }
+  title = 'ng-Freelance';
+
+  constructor(private utilityService: CommonUtilityService) { }
 
   ngOnInit() {
-    this.dogs = this.state.get(DOGS_KEY, null as any)
 
-    if (!this.dogs) {
-      this.http
-      .get('https://dog.ceo/api/breeds/list/all')
-      .subscribe(data => {
-        console.log(data);
-        this.dogs = data;
-        this.state.set(DOGS_KEY, data as any);
-      });
-    }
   }
 }
